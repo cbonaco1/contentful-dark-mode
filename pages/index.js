@@ -2,6 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+/*
+https://medium.com/bigpanda-engineering/dark-theme-with-styled-components-a573dd898e2a
+https://styled-components.com/docs/api#themeprovider
+*/
+
 export default function Home() {
   return (
     <div className={styles.container}>
