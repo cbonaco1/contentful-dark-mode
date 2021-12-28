@@ -1,10 +1,9 @@
 import { Fragment } from "react";
-import GlobalStyle from "../components/GlobalStyle";
+import "../styles/styles.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
-      <GlobalStyle />
       <Component {...pageProps} />
     </Fragment>
   )
