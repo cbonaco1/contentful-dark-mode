@@ -1,4 +1,7 @@
 import { createClient } from 'contentful'
+import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Head from 'next/head'
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -6,10 +9,14 @@ const client = createClient({
 })
 
 const Course = ({ course }) => {
+  const { title, description } = course;
   return (
     <div>
-      <h2>{course.fields.title}</h2>
-      <p>{course.fields.description}</p>
+      <Head>
+        <title>{title} | Courses</title>
+      </Head>
+      <h2>{title}</h2>
+      <div>{documentToReactComponents(description)}</div>
     </div>
   )
 }
@@ -42,9 +49,15 @@ export async function getStaticProps(context) {
     limit: 1,
   })
 
+  const singleCourse = course.items[0].fields;
+  const description = await richTextFromMarkdown(singleCourse.description);
+
   return {
     props: {
-      course: course.items[0]
+      course: {
+        description,
+        title: singleCourse.title,
+      }
     }
   }
 }
