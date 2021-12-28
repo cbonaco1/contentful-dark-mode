@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { createClient } from 'contentful'
 import styles from '../styles/Home.module.css'
 
@@ -30,16 +31,18 @@ export default function Home({ entries }) {
           Welcome to Contentful Courses!
         </h1>
         <p className={styles.description}>
-          Get started by selecting a course category{' '}
+          Below is a list of available courses{' '}
         </p>
 
         <div className={styles.grid}>
           {entries.items.map((item) => {
             return (
-              <a href="https://nextjs.org/docs" className={styles.card} key={item.sys.id}>
-                <h2>{item.fields.title}</h2>
-                <p>Some description</p>
-              </a>
+              <Link href={`/${item.fields.slug}`} className={styles.card} key={item.sys.id}>
+                <div>
+                  <h2>{item.fields.title}</h2>
+                  <p>{item.fields.shortDescription}</p>
+                </div>
+              </Link>
             )
           })}
         </div>
@@ -63,7 +66,7 @@ export default function Home({ entries }) {
 
 export async function getStaticProps(context) {
   const entries = await client.getEntries({
-    content_type: 'category'
+    content_type: 'course'
   });
   return {
     props: {
