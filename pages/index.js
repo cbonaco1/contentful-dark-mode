@@ -37,7 +37,7 @@ export default function Home({ entries }) {
         <div className={styles.grid}>
           {entries.items.map((item) => {
             return (
-              <Link href={`/${item.fields.slug}`} key={item.sys.id}>
+              <Link href={`/courses/${item.fields.slug}`} key={item.sys.id}>
                 <div className={styles.card}>
                   <h2>{item.fields.title}</h2>
                   <p>{item.fields.shortDescription}</p>
