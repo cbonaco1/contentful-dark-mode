@@ -12,13 +12,19 @@ const client = createClient({
 
 const Course = ({ course }) => {
   const { asPath } = useRouter();
-  const { title, description, lessons } = course;
+  const { title, description, lessons, slug } = course;
   const lessonLinks = lessons.map((lesson) => {
     return {
       href: `${asPath}/lessons/${lesson.fields.slug}`,
       title: lesson.fields.title,
       id: lesson.sys.id
     }
+  })
+
+  lessonLinks.unshift({
+    href: `${asPath}`,
+    title: 'Course overview',
+    id: slug,
   })
   
   return (
