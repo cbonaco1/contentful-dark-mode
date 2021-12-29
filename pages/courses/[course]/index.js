@@ -2,8 +2,8 @@ import { createClient } from 'contentful'
 import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import TableOfContents from "../../../components/TableOfContents";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -13,6 +13,13 @@ const client = createClient({
 const Course = ({ course }) => {
   const { asPath } = useRouter();
   const { title, description, lessons } = course;
+  const lessonLinks = lessons.map((lesson) => {
+    return {
+      href: `${asPath}/lessons/${lesson.fields.slug}`,
+      title: lesson.fields.title,
+      id: lesson.sys.id
+    }
+  })
   
   return (
     <div>
@@ -22,17 +29,7 @@ const Course = ({ course }) => {
       <h2>{title}</h2>
       <div>{documentToReactComponents(description)}</div>
       <p>These are the lessons:</p>
-      <ul>
-        {
-          lessons.map((lesson) => {
-            return (
-              <li key={lesson.sys.id}>
-                <Link href={`${asPath}/lessons/${lesson.fields.slug}`}>{lesson.fields.title}</Link>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <TableOfContents links={lessonLinks} />
     </div>
   )
 }
