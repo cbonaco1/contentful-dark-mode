@@ -1,0 +1,41 @@
+.header {
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  border-bottom: 1px solid #eee;
+}
+
+.content {
+  background-color: #f7f9fa;
+  padding: 1rem;
+}
+
+.listItem {
+  margin-bottom: 0.5rem;
+  color: #8091a5;
+  position: relative;
+  &.active {
+    color: #536171;
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      left: -1rem;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background-color: #536171;
+    }
+  }
+  &:hover {
+    color: #536171;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .container {
+    width: 228px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 1px rgb(0 0 0 / 10%);
+  }
+}
