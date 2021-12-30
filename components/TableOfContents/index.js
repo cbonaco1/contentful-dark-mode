@@ -4,7 +4,7 @@ import styles from "./TableOfContents.module.scss";
 const TableOfContents = ({links}) => {
   return (
     <div className={styles.container}>
-      <p className={styles.header}>Table of Contents</p>
+      <h2 className={styles.header}>Table of Contents</h2>
       <div className={styles.content}>
         <ul>
           {

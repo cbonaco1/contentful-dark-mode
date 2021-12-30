@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import TableOfContents from "../../../components/TableOfContents";
+import Overview from "../../../components/Overview";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -12,7 +13,7 @@ const client = createClient({
 
 const Course = ({ course }) => {
   const { asPath } = useRouter();
-  const { title, description, lessons, slug } = course;
+  const { title, description, lessons, slug, duration, skillLevel } = course;
   const lessonLinks = lessons.map((lesson) => {
     return {
       href: `${asPath}/lessons/${lesson.fields.slug}`,
@@ -32,10 +33,10 @@ const Course = ({ course }) => {
       <Head>
         <title>{title} | Courses</title>
       </Head>
-      <h2>{title}</h2>
-      <div>{documentToReactComponents(description)}</div>
-      <p>These are the lessons:</p>
       <TableOfContents links={lessonLinks} />
+      <h2>{title}</h2>
+      <Overview duration={duration} skillLevel={skillLevel}  />
+      <div>{documentToReactComponents(description)}</div>
     </div>
   )
 }
@@ -45,12 +46,21 @@ export async function getStaticPaths() {
     content_type: 'course',
   });
 
-  const paths = courses.items.map(item => {
-    return {
+  const paths = courses.items.map(course => {
+    const obj = {
       params: {
-        course: item.fields.slug
+        course: course.fields.slug
       }
     }
+
+    course.fields.lessons.forEach((lesson) => {
+      // console.log(lesson.fields.slug)
+      obj.params['lesson'] = lesson.fields.slug;
+    })
+
+    console.log(obj)
+
+    return obj;
   });
 
   return {
