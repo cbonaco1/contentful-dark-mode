@@ -47,20 +47,11 @@ export async function getStaticPaths() {
   });
 
   const paths = courses.items.map(course => {
-    const obj = {
+    return {
       params: {
         course: course.fields.slug
       }
-    }
-
-    course.fields.lessons.forEach((lesson) => {
-      // console.log(lesson.fields.slug)
-      obj.params['lesson'] = lesson.fields.slug;
-    })
-
-    console.log(obj)
-
-    return obj;
+    };
   });
 
   return {
