@@ -1,4 +1,6 @@
 import { createClient } from 'contentful'
+import { useRouter } from 'next/router'
+import Layout from "layouts/Layout";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -6,8 +8,26 @@ const client = createClient({
 })
 
 const Lesson = ({ lesson, course }) => {
+  const { query } = useRouter();
+  const { lessons, slug } = course;
+  const lessonLinks = lessons.map((lesson) => {
+    return {
+      href: `/courses/${query.course}/lessons/${lesson.fields.slug}`,
+      title: lesson.fields.title,
+      id: lesson.sys.id
+    }
+  })
+
+  lessonLinks.unshift({
+    href: `/courses/${query.course}`,
+    title: 'Course overview',
+    id: slug,
+  })
+
   return (
-    <p>This is a lesson</p>
+    <Layout lessonLinks={lessonLinks}>
+      <h2>{lesson.title}</h2>
+    </Layout>
   )
 }
 
@@ -54,7 +74,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      lesson,
+      lesson: lesson.items[0].fields,
       course: course.items[0].fields,
     }
   }

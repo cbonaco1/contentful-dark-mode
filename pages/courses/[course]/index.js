@@ -3,8 +3,8 @@ import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import TableOfContents from "../../../components/TableOfContents";
-import Overview from "../../../components/Overview";
+import Overview from "components/Overview";
+import Layout from "layouts/Layout";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -33,10 +33,11 @@ const Course = ({ course }) => {
       <Head>
         <title>{title} | Courses</title>
       </Head>
-      <TableOfContents links={lessonLinks} />
-      <h2>{title}</h2>
-      <Overview duration={duration} skillLevel={skillLevel}  />
-      <div>{documentToReactComponents(description)}</div>
+      <Layout lessonLinks={lessonLinks}>
+        <h2>{title}</h2>
+        <Overview duration={duration} skillLevel={skillLevel}  />
+        <div>{documentToReactComponents(description)}</div>
+      </Layout>
     </div>
   )
 }
