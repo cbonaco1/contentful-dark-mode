@@ -1,6 +1,7 @@
+import Link from "next/link";
 import styles from "./Overview.module.scss";
 
-const Overview = ({ duration, skillLevel}) => {
+const Overview = ({ duration, skillLevel, firstLessonUrl }) => {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Overview</h3>
@@ -11,7 +12,9 @@ const Overview = ({ duration, skillLevel}) => {
         <p>Skill level: {skillLevel}</p>
       </div>
       <div className={styles.ctaWrapper}>
-        <button className={styles.cta}>Start Course</button>
+        <Link href={firstLessonUrl}>
+          <a className={`button ${styles.cta}`}>Start Course</a>
+        </Link>
       </div>
     </div>
   )

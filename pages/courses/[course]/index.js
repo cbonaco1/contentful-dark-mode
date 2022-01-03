@@ -35,7 +35,7 @@ const Course = ({ course }) => {
       </Head>
       <Layout lessonLinks={lessonLinks}>
         <h2>{title}</h2>
-        <Overview duration={duration} skillLevel={skillLevel}  />
+        <Overview duration={duration} skillLevel={skillLevel} firstLessonUrl={lessonLinks[1].href} />
         <div>{documentToReactComponents(description)}</div>
       </Layout>
     </div>
