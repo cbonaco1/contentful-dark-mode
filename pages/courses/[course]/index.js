@@ -3,7 +3,7 @@ import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Overview from "components/Overview";
+import Overview from "components/CourseOverview";
 import Layout from "layouts/Layout";
 
 const client = createClient({

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./Overview.module.scss";
+import styles from "./CourseOverview.module.scss";
 
 const Overview = ({ duration, skillLevel, firstLessonUrl }) => {
   return (
