@@ -1,5 +1,7 @@
 import { createClient } from 'contentful'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import { Fragment } from "react";
 import Layout from "layouts/Layout";
 
 const client = createClient({
@@ -9,7 +11,9 @@ const client = createClient({
 
 const Lesson = ({ lesson, course }) => {
   const { query } = useRouter();
-  const { lessons, slug } = course;
+  const { lessons, slug, title:courseTitle } = course;
+  const { title:lessonTitle} = lesson;
+
   const lessonLinks = lessons.map((lesson) => {
     return {
       href: `/courses/${query.course}/lessons/${lesson.fields.slug}`,
@@ -25,9 +29,14 @@ const Lesson = ({ lesson, course }) => {
   })
 
   return (
-    <Layout lessonLinks={lessonLinks}>
-      <h2>{lesson.title}</h2>
-    </Layout>
+    <Fragment>
+      <Head>
+        <title>{courseTitle} | {lessonTitle}</title>
+      </Head>
+      <Layout lessonLinks={lessonLinks}>
+        <h2>{lessonTitle}</h2>
+      </Layout>
+    </Fragment>
   )
 }
 
