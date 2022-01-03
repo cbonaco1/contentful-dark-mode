@@ -28,7 +28,8 @@
       background-color: #536171;
     }
   }
-  &:hover {
+  a:hover,
+  a:focus {
     color: #536171;
   }
 }
