@@ -34,7 +34,7 @@ const Lesson = ({ lesson, course }) => {
         <title>{courseTitle} | {lessonTitle}</title>
       </Head>
       <Layout lessonLinks={lessonLinks}>
-        <h2>{lessonTitle}</h2>
+        <h1>{lessonTitle}</h1>
       </Layout>
     </Fragment>
   )

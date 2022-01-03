@@ -1,15 +1,15 @@
 import TableOfContents from "components/TableOfContents";
+import styles from "./Layout.module.scss";
 
 const Layout = ({ children, lessonLinks }) => {
   return (
-    <div className="layout">
-      <div className="side">
+    <div className={styles.layout}>
+      <div>
         <TableOfContents links={lessonLinks} />
       </div>
-      <div className="content">
+      <div className={styles.content}>
         {children}
       </div>
-      <p>Footer could go here</p>
     </div>
   )
 }

@@ -1,0 +1,11 @@
+.content {
+  margin-top: 1rem;
+  padding: 0 16px;
+}
+
+@media screen and (min-width: 700px) {
+  .layout {
+    display: flex;
+    align-items: flex-start;
+  }
+}
