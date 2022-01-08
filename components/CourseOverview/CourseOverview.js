@@ -13,7 +13,7 @@ const Overview = ({ duration, skillLevel, firstLessonUrl }) => {
       </div>
       <div className={styles.ctaWrapper}>
         <Link href={firstLessonUrl}>
-          <a className={`button ${styles.cta}`}>Start Course</a>
+          <a className={`button ${styles.cta}`}>Start course</a>
         </Link>
       </div>
     </div>
