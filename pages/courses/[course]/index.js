@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { createClient } from 'contentful'
 import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -29,7 +30,7 @@ const Course = ({ course }) => {
   })
   
   return (
-    <div>
+    <Fragment>
       <Head>
         <title>{title} | Courses</title>
       </Head>
@@ -38,7 +39,7 @@ const Course = ({ course }) => {
         <Overview duration={duration} skillLevel={skillLevel} firstLessonUrl={lessonLinks[1].href} />
         <div>{documentToReactComponents(description)}</div>
       </Layout>
-    </div>
+    </Fragment>
   )
 }
 
