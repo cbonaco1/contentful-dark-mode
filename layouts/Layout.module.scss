@@ -2,11 +2,27 @@
   margin-top: 1rem;
   padding: 0 16px;
   min-height: 100vh;
+  word-wrap: break-word;
 }
 
 @media screen and (min-width: 700px) {
   .layout {
     display: flex;
     align-items: flex-start;
+    padding: 0 16px;
+    margin: 32px auto 0 auto;
+    width: 100%;
+    max-width: 980px;
+  }
+
+  .content {
+    padding: 0 0 0 32px;
+    margin-top: 0;
+    width: 100%;
+    max-width: 732px;
+  }
+
+  .tocWrapper {
+    flex: 0 0 228px;
   }
 }

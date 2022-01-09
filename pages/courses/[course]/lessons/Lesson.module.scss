@@ -1,0 +1,13 @@
+.title {
+  margin-bottom: 2rem;
+}
+
+.content {
+  margin-bottom: 2rem;
+  p {
+    margin: 1rem 0;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
